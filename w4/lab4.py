@@ -147,11 +147,14 @@ def dali1():    # show colors
     file_name = "dali.bmp"
     image_file = Image.open(file_name)
     image_array = np.asarray(image_file)
-    print(np.shape(image_array))
 
     red = image_array[:, :, 0]
     green = image_array[:, :, 1]
     blue = image_array[:, :, 2]
+
+    edge_array = make_edge_array_rgb(image_array)
+    plt.imshow(edge_array, cmap="Greys")
+    plt.show()
 
     fig, axs = plt.subplots(2, 2, sharex="all", sharey="all")
     for axis, image, color in zip(axs.flatten(), [image_array, red, blue, green],
@@ -161,7 +164,7 @@ def dali1():    # show colors
     plt.show()
 
 
-def dali2(n=1):
+def dali2(n=10):
     file_name = "dali.bmp"
     image_file = Image.open(file_name)
     image_array = np.asarray(image_file)
@@ -170,11 +173,11 @@ def dali2(n=1):
     for _ in range(n):
         carved = carve_seam(carved)
 
-    fig, axs = plt.subplots(1, 2)
+    fig, axs = plt.subplots(1, 2, sharey="all")
     for axis, image, title in zip(axs, [image_array, carved], ("Original", f"Seam carved {n} times")):
         axis.set_title(title)
         axis.imshow(image)
     plt.show()
 
 
-dali2()
+dali1()
