@@ -180,4 +180,4 @@ def dali2(n=10):
     plt.show()
 
 
-dali1()
+dali2()
